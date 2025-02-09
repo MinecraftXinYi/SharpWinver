@@ -29,10 +29,10 @@ namespace SharpWinverUWP
             if (ApiInformation.IsTypePresent("Windows.UI.Xaml.Media.AcrylicBrush"))
                 Background = new AcrylicBrush() { BackgroundSource = AcrylicBackgroundSource.HostBackdrop };
             this.InitializeComponent();
-            WinEditionContent.Text = Winver.WindowsEdition.WindowsEditionName;
+            WinEditionContent.Text = Winver.WindowsEdition.OSEditionName;
             ReleaseVersionContent.Text = Winver.WindowsVersion.VersionTag;
             OSVersionContent.Text = string.Join(".", Winver.WindowsVersion.OSVersion);
-            OSArchContent.Text = Winver.OSArchitecture.ToString();
+            OSArchContent.Text = Winver.WindowsEdition.OSArchitecture.ToString();
             Debug.WriteLine($"IsWindowsNT: {Winver.IsWindowsNT}");
             Debug.WriteLine($"Windows SKU (from registry): {(WinProduct.GetWindowsSKUFromRegistry() ?? WindowsSKU.Undefined)}");
             Debug.WriteLine($"Windows SKU (from api): {(WinProduct.GetWindowsSKUFromWinApi(10, 0) ?? WindowsSKU.Undefined)}");
@@ -42,7 +42,7 @@ namespace SharpWinverUWP
 
         private void OKButton_Click(object sender, RoutedEventArgs e)
         {
-            CoreApplication.Exit();
+            _ = ApplicationView.GetForCurrentView().TryConsolidateAsync();
         }
     }
 }
