@@ -169,9 +169,9 @@
     <PRIResource Include="Strings\zh-CN\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\SharpWinverLib\SharpWinverLib.csproj">
+    <ProjectReference Include="..\..\SharpWinver\SharpWinver.csproj">
       <Project>{260829df-c6eb-4084-a056-c7cd342a69e9}</Project>
-      <Name>SharpWinverLib</Name>
+      <Name>SharpWinver</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

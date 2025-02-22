@@ -1,5 +1,6 @@
 ﻿using SharpWinver;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
 
 namespace SharpWinverNativeAOTest;
 

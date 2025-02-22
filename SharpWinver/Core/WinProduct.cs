@@ -43,7 +43,7 @@ public static class WinProduct
 
     public static WindowsSKU? GetWindowsSKUFromWinApi(uint dwOSMajorVersion, uint dwOSMinorVersion)
     {
-        if (!GetProductInfoManaged(dwOSMajorVersion, dwOSMinorVersion, ConstantInts.MinVersionNumber, ConstantInts.MinVersionNumber, out uint productType)) return null;
+        if (!GetProductInfoManaged(dwOSMajorVersion, dwOSMinorVersion, 0, 0, out uint productType)) return null;
         if (WindowsSKU.TryParse(productType.ToString(), out WindowsSKU windowsSku)) return windowsSku;
         else return null;
     }
