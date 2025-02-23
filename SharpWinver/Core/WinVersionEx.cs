@@ -17,7 +17,6 @@ public static class WinVersionEx
     {
         uint? revision = NTRegistryValueReader.GetDwordValue(ConstRegistryPaths.WinNTCurrentVersion, "UBR");
         revision ??= NTRegistryValueReader.GetDwordValue(ConstRegistryPaths.WinNTCurrentVersion, "BaseBuildRevisionNumber");
-        revision ??= 0;
-        return revision.Value;
+        return revision.GetValueOrDefault();
     }
 }

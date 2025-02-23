@@ -1,6 +1,6 @@
 ﻿using SharpWinver;
+using SharpWinver.Core;
 using System.Diagnostics;
-using System.Runtime.InteropServices;
 
 namespace SharpWinverNativeAOTest;
 
@@ -19,6 +19,10 @@ internal unsafe class Program
         Console.WriteLine("Windows Version" + ":  " + Winver.WindowsVersion.VersionTag);
         Console.WriteLine("OS Version" + ":  " + string.Join(".", Winver.WindowsVersion.OSVersion));
         Console.WriteLine("OS Architecture" + ":  " + Winver.WindowsEdition.OSArchitecture);
+        Debug.WriteLine($"Windows SKU (from registry): {(WinProduct.GetWindowsSKUFromRegistry() ?? WindowsSKU.Undefined)}");
+        Debug.WriteLine($"Windows SKU (from api): {(WinProduct.GetWindowsSKUFromWinApi(10, 0) ?? WindowsSKU.Undefined)}");
+        Debug.WriteLine($"OS Architecture (method1): {WinNTProcArch.GetNTOSArchitecture1()}");
+        Debug.WriteLine($"OS Architecture (method2): {WinNTProcArch.GetNTOSArchitecture2()}");
         Console.WriteLine("-------------------------------");
         Console.WriteLine("Press any key to continue...");
         Console.ReadKey();

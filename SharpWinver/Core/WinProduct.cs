@@ -1,4 +1,5 @@
-﻿using SharpWinNTInterop.Toolsets;
+﻿using SharpWinNTInterop;
+using SharpWinNTInterop.Toolsets;
 using System;
 using System.Runtime.InteropServices;
 
@@ -9,35 +10,35 @@ public static class WinProduct
     public static string? GetWindowsProductName()
         => NTRegistryValueReader.GetStringValue(ConstRegistryPaths.WinNTCurrentVersion, "ProductName");
 
-    public static bool GetProductInfoManaged(uint dwOSMajorVersion, uint dwOSMinorVersion, uint dwSpMajorVersion, uint dwSpMinorVersion, out uint dwReturnedProductType)
+    public static BOOLEAN GetProductInfoManaged(uint dwOSMajorVersion, uint dwOSMinorVersion, uint dwSpMajorVersion, uint dwSpMinorVersion, out uint dwReturnedProductType)
     {
         try
         {
             [DllImport(ExternDllName.KernelBase, SetLastError = true)]
-            static extern bool GetProductInfo(uint dwOSMajorVersion, uint dwOSMinorVersion, uint dwSpMajorVersion, uint dwSpMinorVersion, out uint dwReturnedProductType);
-            bool result = GetProductInfo(dwOSMajorVersion, dwOSMinorVersion, dwSpMajorVersion, dwSpMinorVersion, out dwReturnedProductType);
+            static extern BOOLEAN GetProductInfo(uint dwOSMajorVersion, uint dwOSMinorVersion, uint dwSpMajorVersion, uint dwSpMinorVersion, out uint dwReturnedProductType);
+            BOOLEAN result = GetProductInfo(dwOSMajorVersion, dwOSMinorVersion, dwSpMajorVersion, dwSpMinorVersion, out dwReturnedProductType);
             return result;
         }
         catch (Exception) { }
         try
         {
             [DllImport(ExternDllName.Kernel32, SetLastError = true)]
-            static extern bool GetProductInfo(uint dwOSMajorVersion, uint dwOSMinorVersion, uint dwSpMajorVersion, uint dwSpMinorVersion, out uint dwReturnedProductType);
-            bool result = GetProductInfo(dwOSMajorVersion, dwOSMinorVersion, dwSpMajorVersion, dwSpMinorVersion, out dwReturnedProductType);
+            static extern BOOLEAN GetProductInfo(uint dwOSMajorVersion, uint dwOSMinorVersion, uint dwSpMajorVersion, uint dwSpMinorVersion, out uint dwReturnedProductType);
+            BOOLEAN result = GetProductInfo(dwOSMajorVersion, dwOSMinorVersion, dwSpMajorVersion, dwSpMinorVersion, out dwReturnedProductType);
             return result;
         }
         catch (Exception) { }
         try
         {
             [DllImport(ExternDllName.Kernel32Legacy, SetLastError = true)]
-            static extern bool GetProductInfo(uint dwOSMajorVersion, uint dwOSMinorVersion, uint dwSpMajorVersion, uint dwSpMinorVersion, out uint dwReturnedProductType);
-            bool result = GetProductInfo(dwOSMajorVersion, dwOSMinorVersion, dwSpMajorVersion, dwSpMinorVersion, out dwReturnedProductType);
+            static extern BOOLEAN GetProductInfo(uint dwOSMajorVersion, uint dwOSMinorVersion, uint dwSpMajorVersion, uint dwSpMinorVersion, out uint dwReturnedProductType);
+            BOOLEAN result = GetProductInfo(dwOSMajorVersion, dwOSMinorVersion, dwSpMajorVersion, dwSpMinorVersion, out dwReturnedProductType);
             return result;
         }
         catch (Exception)
         {
             dwReturnedProductType = 0;
-            return false;
+            return BOOLEAN.FALSE;
         }
     }
 
