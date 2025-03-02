@@ -34,8 +34,8 @@ namespace SharpWinverUWP
             OSVersionContent.Text = string.Join(".", Winver.WindowsVersion.OSVersion);
             OSArchContent.Text = Winver.WindowsEdition.OSArchitecture.ToString();
             Debug.WriteLine($"IsWindowsNT: {Winver.IsWindowsNT}");
-            Debug.WriteLine($"Windows SKU (from registry): {(WinProduct.GetWindowsSKUFromRegistry() ?? WindowsSKU.Undefined)}");
-            Debug.WriteLine($"Windows SKU (from api): {(WinProduct.GetWindowsSKUFromWinApi(10, 0) ?? WindowsSKU.Undefined)}");
+            Debug.WriteLine($"Windows SKU (from registry): {(WinProduct.GetWindowsSKUFromRegistry())}");
+            Debug.WriteLine($"Windows SKU (from api): {(WinProduct.GetWindowsSKUFromWinApi(10, 0))}");
             Debug.WriteLine($"OS Architecture (method1): {WinNTProcArch.GetNTOSArchitecture1()}");
             Debug.WriteLine($"OS Architecture (method2): {WinNTProcArch.GetNTOSArchitecture2()}");
         }

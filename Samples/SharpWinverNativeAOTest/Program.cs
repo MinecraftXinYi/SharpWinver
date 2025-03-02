@@ -19,8 +19,9 @@ internal unsafe class Program
         Console.WriteLine("Windows Version" + ":  " + Winver.WindowsVersion.VersionTag);
         Console.WriteLine("OS Version" + ":  " + string.Join(".", Winver.WindowsVersion.OSVersion));
         Console.WriteLine("OS Architecture" + ":  " + Winver.WindowsEdition.OSArchitecture);
-        Debug.WriteLine($"Windows SKU (from registry): {(WinProduct.GetWindowsSKUFromRegistry() ?? WindowsSKU.Undefined)}");
-        Debug.WriteLine($"Windows SKU (from api): {(WinProduct.GetWindowsSKUFromWinApi(10, 0) ?? WindowsSKU.Undefined)}");
+        WinNTVersion.RtlGetNtVersionNumbers(out uint major, out uint minor, out _);
+        Debug.WriteLine($"Windows SKU (from registry): {(WinProduct.GetWindowsSKUFromRegistry())}");
+        Debug.WriteLine($"Windows SKU (from api): {(WinProduct.GetWindowsSKUFromWinApi(major, minor))}");
         Debug.WriteLine($"OS Architecture (method1): {WinNTProcArch.GetNTOSArchitecture1()}");
         Debug.WriteLine($"OS Architecture (method2): {WinNTProcArch.GetNTOSArchitecture2()}");
         Console.WriteLine("-------------------------------");
