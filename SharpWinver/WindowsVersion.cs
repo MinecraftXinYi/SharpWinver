@@ -22,8 +22,7 @@ public static partial class Winver
             get
             {
                 string? osVersionTag = WinVersionEx.GetWindowsVersionTag();
-                osVersionTag ??= ConstantStrings.ErrorMsg;
-                return osVersionTag;
+                return osVersionTag ?? ConstantStrings.InfoIsUnknown;
             }
         }
 

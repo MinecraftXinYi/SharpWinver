@@ -32,9 +32,9 @@ public static partial class Winver
         {
             get
             {
-                string osEdition = string.Empty;
+                string osEdition = null!;
                 if (WinBrand.CanInvoke) osEdition = WinBrand.BrandingFormatString(WinBrand.VariableNames.WindowsLong);
-                if (string.IsNullOrEmpty(osEdition)) osEdition = WinProduct.GetWindowsProductName() ?? string.Empty;
+                if (string.IsNullOrEmpty(osEdition)) osEdition = WinProduct.GetWindowsProductName()!;
                 if (string.IsNullOrEmpty(osEdition)) osEdition = $"{ConstantStrings.WindowsGeneric} {SKU}";
                 return osEdition;
             }

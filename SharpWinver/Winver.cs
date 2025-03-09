@@ -1,7 +1,7 @@
 ﻿//SharpWinver Library
 //This is a .NET Standard library that provides version information of Windows OS via common CSharp methods.
 //Author: Github/MinecraftXinYi
-//Version: 2.0.1
+//Version: 2.1.0
 
 using SharpWinNTInterop;
 using System;
@@ -22,24 +22,22 @@ public static partial class Winver
     {
         get
         {
-            bool result;
             try
             {
                 [DllImport(DLLName.NTDLL, SetLastError = false)]
                 [DefaultDllImportSearchPaths(DllImportSearchPath.System32)]
                 static extern double sin(double x);
                 sin(0);
-                result = true;
+                return true;
             }
             catch (DllNotFoundException)
             {
-                result = false;
+                return false;
             }
             catch (TypeLoadException)
             {
-                result = false;
+                return false;
             }
-            return result;
         }
     }
 }
