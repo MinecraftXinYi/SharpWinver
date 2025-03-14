@@ -47,8 +47,8 @@ public static class WinProduct
 
     public static WindowsSKU GetWindowsSKUFromRegistry()
     {
-        string? editionID = NTRegistryValueReader.GetStringValue(ConstRegistryPaths.WinNTCurrentVersion, "EditionID");
-        if (editionID == null) return WindowsSKU.Undefined;
+        string editionID = NTRegistryValueReader.GetStringValue(ConstRegistryPaths.WinNTCurrentVersion, "EditionID")!;
+        if (string.IsNullOrEmpty(editionID)) return WindowsSKU.Undefined;
         if (!WindowsSKU.TryParse(editionID, out WindowsSKU windowsSku)) return WindowsSKU.Undefined;
         return windowsSku;
     }

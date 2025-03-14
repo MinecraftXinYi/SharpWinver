@@ -27,7 +27,7 @@ public static partial class Winver
         }
 
         /// <summary>
-        /// Windows NT 版本
+        /// Windows NT 内核版本
         /// </summary>
         /// <example>
         /// 6.0.6000; 6.1.7600; 10.0.16299; 10.0.22000
@@ -36,8 +36,8 @@ public static partial class Winver
         {
             get
             {
-                WinNTVersion.GetWinNTVersionNumbers(out uint major, out uint minor, out uint build);
-                return new((int)major, (int)minor, (int)build);
+                uint[] ntVersionNum = WinNTVersion.GetWinNTVersionNumbers();
+                return new((int)ntVersionNum[0], (int)ntVersionNum[1], (int)ntVersionNum[2]);
             }
         }
 
