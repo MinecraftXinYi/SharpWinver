@@ -14,9 +14,6 @@ public static partial class Winver
         /// <summary>
         /// Windows 系统版本代号
         /// </summary>
-        /// <example>
-        /// RTM; SP1; SP2; 1709; 1903; 21H2; 22H2
-        /// </example>
         public static string VersionTag
         {
             get
@@ -29,9 +26,6 @@ public static partial class Winver
         /// <summary>
         /// Windows NT 内核版本
         /// </summary>
-        /// <example>
-        /// 6.0.6000; 6.1.7600; 10.0.16299; 10.0.22000
-        /// </example>
         public static Version NTVersion
         {
             get
@@ -44,9 +38,6 @@ public static partial class Winver
         /// <summary>
         /// Windows 操作系统版本
         /// </summary>
-        /// <example>
-        /// 6.1.7601.0; 6.2.9200.16384; 10.0.18362.1; 10.0.22621.1533
-        /// </example>
         public static Version OSVersion
         {
             get

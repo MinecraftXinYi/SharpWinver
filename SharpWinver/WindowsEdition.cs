@@ -7,12 +7,12 @@ using Core;
 public static partial class Winver
 {
     /// <summary>
-    /// 当前运行的 Windows 系统 SKU 版本
+    /// 当前运行的 Windows 系统 SKU
     /// </summary>
     public static class WindowsEdition
     {
         /// <summary>
-        /// 所属 Windows SKU
+        /// Windows SKU
         /// </summary>
         public static WindowsSKU SKU
         {
