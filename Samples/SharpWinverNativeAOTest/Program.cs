@@ -15,7 +15,7 @@ internal unsafe class Program
         Console.ReadKey();
         Console.WriteLine("----Current Windows OS Info----");
         Console.WriteLine("-------------------------------");
-        Console.WriteLine("Windows Edition" + ":  " + Winver.WindowsEdition.OSEditionName);
+        Console.WriteLine("Windows Edition" + ":  " + Winver.WindowsEdition.OSEdition);
         Console.WriteLine("Windows Version" + ":  " + Winver.WindowsVersion.VersionTag);
         Console.WriteLine("OS Version" + ":  " + string.Join(".", Winver.WindowsVersion.OSVersion));
         Console.WriteLine("OS Architecture" + ":  " + Winver.WindowsEdition.OSArchitecture);

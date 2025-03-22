@@ -29,7 +29,7 @@ namespace SharpWinverUWP
             if (ApiInformation.IsTypePresent("Windows.UI.Xaml.Media.AcrylicBrush"))
                 Background = new AcrylicBrush() { BackgroundSource = AcrylicBackgroundSource.HostBackdrop };
             this.InitializeComponent();
-            WinEditionContent.Text = Winver.WindowsEdition.OSEditionName;
+            WinEditionContent.Text = Winver.WindowsEdition.OSEdition;
             ReleaseVersionContent.Text = Winver.WindowsVersion.VersionTag;
             OSVersionContent.Text = string.Join(".", Winver.WindowsVersion.OSVersion);
             OSArchContent.Text = Winver.WindowsEdition.OSArchitecture.ToString();

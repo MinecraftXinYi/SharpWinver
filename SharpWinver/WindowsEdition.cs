@@ -26,9 +26,9 @@ public static partial class Winver
         }
 
         /// <summary>
-        /// 所属 Windows SKU 版本名称
+        /// Windows SKU 名称
         /// </summary>
-        public static string OSEditionName
+        public static string OSEdition
         {
             get
             {
