@@ -1,6 +1,6 @@
 ﻿namespace SharpWinver.Core;
 
-internal static class ConstantStrings
+internal static class DefaultInfoStrings
 {
     internal const string
         WindowsGeneric = "Windows",

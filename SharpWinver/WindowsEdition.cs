@@ -3,6 +3,7 @@
 namespace SharpWinver;
 
 using Core;
+using Core.NativeInterop;
 
 public static partial class Winver
 {
@@ -11,31 +12,29 @@ public static partial class Winver
     /// </summary>
     public static class WindowsEdition
     {
-        /// <summary>
-        /// Windows SKU
-        /// </summary>
-        public static WindowsSKU SKU
+        public static WindowsSKU GetWindowsSKUObject()
         {
-            get
-            {
-                WinNTVersion.RtlGetNtVersionNumbers(out uint major, out uint minor, out _);
-                WindowsSKU windowsSku = WinProduct.GetWindowsSKUFromWinApi(major, minor);
-                if (windowsSku == WindowsSKU.Undefined) windowsSku = WinProduct.GetWindowsSKUFromRegistry();
-                return windowsSku;
-            }
+            RtlNTVersionApi.RtlGetNtVersionNumbers(out uint major, out uint minor, out _);
+            WindowsSKU windowsSku = WinProduct.GetWindowsSKU(major, minor);
+            if (windowsSku == WindowsSKU.Undefined) windowsSku = WinProduct.GetWindowsSKUFromRegistry();
+            return windowsSku;
         }
 
         /// <summary>
-        /// Windows SKU 名称
+        /// Windows SKU 内部名称
+        /// </summary>
+        public static string SKU => GetWindowsSKUObject().ToString();
+
+        /// <summary>
+        /// Windows SKU 显示名称
         /// </summary>
         public static string OSEdition
         {
             get
             {
-                string osEdition = null!;
-                if (WinBrand.CanInvoke) osEdition = WinBrand.BrandingFormatString(WinBrand.VariableNames.WindowsLong);
-                if (string.IsNullOrEmpty(osEdition)) osEdition = WinProduct.GetWindowsProductName()!;
-                if (string.IsNullOrEmpty(osEdition)) osEdition = $"{ConstantStrings.WindowsGeneric} {SKU}";
+                string osEdition = WinProduct.GetWindowsProductName()!;
+                if (string.IsNullOrEmpty(osEdition)) osEdition = WinProduct.GetWindowsProductNameFromRegistry()!;
+                if (string.IsNullOrEmpty(osEdition)) osEdition = $"{DefaultInfoStrings.WindowsGeneric} {SKU}";
                 return osEdition;
             }
         }
@@ -47,8 +46,8 @@ public static partial class Winver
         {
             get
             {
-                Architecture? architecture = WinNTProcArch.GetNTOSArchitecture2();
-                architecture ??= WinNTProcArch.GetNTOSArchitecture1();
+                Architecture? architecture = WinOSProcArch.GetNTOSArchitecture2();
+                architecture ??= WinOSProcArch.GetNTOSArchitecture1();
                 architecture ??= RuntimeInformation.ProcessArchitecture;
                 return architecture.Value;
             }

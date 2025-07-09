@@ -16,10 +16,7 @@ public static partial class Winver
         /// </summary>
         public static bool HasExpirationTime
         {
-            get
-            {
-                return WinExpiration.GetSystemExpiration().HasValue;
-            }
+            get => WinExpiration.GetSystemExpirationDateTime().HasValue;
         }
 
         /// <summary>
@@ -29,9 +26,9 @@ public static partial class Winver
         {
             get
             {
-                DateTime? expirationDateTime = WinExpiration.GetSystemExpiration();
-                if (expirationDateTime.HasValue) return expirationDateTime.Value.ToUniversalTime();
-                else return null;
+                long? expirationDateTime = WinExpiration.GetSystemExpirationDateTime();
+                if (!expirationDateTime.HasValue) return null;
+                return DateTime.FromFileTimeUtc(expirationDateTime.Value);
             }
         }
     }

@@ -16,12 +16,7 @@ public static partial class Winver
         /// </summary>
         public static DateTime OSInstallationDateTime
         {
-            get
-            {
-                uint? datetimeRaw = WinInstallation.InstallationDateTimeRaw;
-                UnixDateTime.TryConvertFromUnixTimestamp(datetimeRaw.GetValueOrDefault(), out DateTime installDateTime);
-                return installDateTime;
-            }
+            get => DateTime.FromFileTimeUtc(WinInstallation.SystemInstallationDateTime.GetValueOrDefault());
         }
 
         /// <summary>
@@ -29,11 +24,7 @@ public static partial class Winver
         /// </summary>
         public static string OSRegisteredOwner
         {
-            get
-            {
-                string? registeredOwner = WinInstallation.RegisteredOwner;
-                return registeredOwner ?? ConstantStrings.DefaultRegisteredOwner;
-            }
+            get => WinInstallation.SystemRegisteredOwner ?? DefaultInfoStrings.DefaultRegisteredOwner;
         }
 
         /// <summary>
@@ -41,11 +32,7 @@ public static partial class Winver
         /// </summary>
         public static string OSRegisteredOrganization
         {
-            get
-            {
-                string? registeredOrganization = WinInstallation.RegisteredOrganization;
-                return registeredOrganization ?? string.Empty;
-            }
+            get => WinInstallation.SystemRegisteredOrganization ?? string.Empty;
         }
     }
 }

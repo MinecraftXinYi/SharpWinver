@@ -1,0 +1,16 @@
+﻿GetNativeSystemInfo
+IsWow64Process2
+
+Windows.Wdk.Storage.FileSystem.HEAP_ZERO_MEMORY
+
+GENERIC_READ
+KEY_VALUE_PARTIAL_INFORMATION
+OBJ_CASE_INSENSITIVE
+STATUS_SUCCESS
+
+RtlInitUnicodeString
+
+NtOpenKey
+NtQueryValueKey
+
+NtClose

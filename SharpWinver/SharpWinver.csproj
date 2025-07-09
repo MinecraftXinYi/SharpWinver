@@ -6,9 +6,9 @@
     <LangVersion>10.0</LangVersion>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <Nullable>enable</Nullable>
-    <CodeVersion>2.2.0</CodeVersion>
+    <CodeVersion>3.0.0.3</CodeVersion>
     <ProductVersion>$(CodeVersion)</ProductVersion>
-    <FileVersion>$(CodeVersion).1</FileVersion>
+    <FileVersion>$(CodeVersion)</FileVersion>
     <AssemblyTitle>SharpWinver Library</AssemblyTitle>
     <Company>MinecraftXinYi Person</Company>
     <Title>SharpWinver Library</Title>
@@ -17,9 +17,11 @@
     <CheckNotRecommendedTargetFramework>false</CheckNotRecommendedTargetFramework>
     <NoWarn>$(NoWarn);NETSDK1215</NoWarn>
   </PropertyGroup>
-
   <ItemGroup>
-    <ProjectReference Include="..\MCXin.WinNT\MCXin.WinNT.csproj" />
+    <PackageReference Include="Microsoft.Windows.CsWin32" Version="0.3.183">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
 </Project>

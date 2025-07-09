@@ -1,19 +1,21 @@
 ﻿namespace SharpWinver.Core;
 
+using NativeInterop;
+
 internal static class WinInstallation
 {
-    public static uint? InstallationDateTimeRaw
+    internal static long? SystemInstallationDateTime
     {
-        get => NTRegistryValueReader.GetDwordValue(ConstRegistryPaths.WinNTCurrentVersion, "InstallDate");
+        get => WinNTRegistryValueReader.GetDwordValue(RegistryPath.WinNTCurrentVersion, "InstallDate");
     }
 
-    public static string? RegisteredOwner
+    internal static string? SystemRegisteredOwner
     {
-        get => NTRegistryValueReader.GetStringValue(ConstRegistryPaths.WinNTCurrentVersion, "RegisteredOwner");
+        get => WinNTRegistryValueReader.GetStringValue(RegistryPath.WinNTCurrentVersion, "RegisteredOwner");
     }
 
-    public static string? RegisteredOrganization
+    internal static string? SystemRegisteredOrganization
     {
-        get => NTRegistryValueReader.GetStringValue(ConstRegistryPaths.WinNTCurrentVersion, "RegisteredOrganization");
+        get => WinNTRegistryValueReader.GetStringValue(RegistryPath.WinNTCurrentVersion, "RegisteredOrganization");
     }
 }

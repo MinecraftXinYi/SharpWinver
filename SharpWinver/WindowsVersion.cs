@@ -18,8 +18,8 @@ public static partial class Winver
         {
             get
             {
-                string? osVersionTag = WinVersionEx.GetWindowsVersionTag();
-                return osVersionTag ?? ConstantStrings.InfoIsUnknown;
+                string? osVersionTag = WinVersion.GetWindowsVersionTag();
+                return osVersionTag ?? DefaultInfoStrings.InfoIsUnknown;
             }
         }
 
@@ -30,7 +30,7 @@ public static partial class Winver
         {
             get
             {
-                uint[] ntVersionNum = WinNTVersion.GetWinNTVersionNumbers();
+                uint[] ntVersionNum = WinVersion.GetWinNTVersionNumbers();
                 return new((int)ntVersionNum[0], (int)ntVersionNum[1], (int)ntVersionNum[2]);
             }
         }
@@ -43,7 +43,7 @@ public static partial class Winver
             get
             {
                 Version ntVersion = NTVersion;
-                int revision = (int)WinVersionEx.GetWindowsRevisionNumber();
+                int revision = (int)WinVersion.GetWindowsRevisionNumber().GetValueOrDefault();
                 return new(ntVersion.Major, ntVersion.Minor, ntVersion.Build, revision);
             }
         }

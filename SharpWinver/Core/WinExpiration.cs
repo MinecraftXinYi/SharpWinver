@@ -1,13 +1,12 @@
-﻿using System;
+﻿namespace SharpWinver.Core;
 
-namespace SharpWinver.Core;
+using static NativeInterop.NTKernelOSData;
 
 public static class WinExpiration
 {
-    // Thanks to @dhrdlicka for the code
-    public unsafe static DateTime? GetSystemExpiration() => *(long*)0x7ffe02c8 switch
+    public unsafe static long? GetSystemExpirationDateTime()
     {
-        0 => null,
-        var x => DateTime.FromFileTime(x)
-    };
+        long rawData = *KUSER_SHARED_DATA_SystemExpirationDate;
+        return rawData != 0 ? rawData : null;
+    }
 }
