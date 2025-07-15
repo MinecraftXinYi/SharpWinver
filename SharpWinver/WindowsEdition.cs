@@ -12,7 +12,7 @@ public static partial class Winver
     /// </summary>
     public static class WindowsEdition
     {
-        public static WindowsSKU GetWindowsSKUObject()
+        public static WindowsSKU GetWindowsSKUGlobal()
         {
             RtlNTVersionApi.RtlGetNtVersionNumbers(out uint major, out uint minor, out _);
             WindowsSKU windowsSku = WinProduct.GetWindowsSKU(major, minor);
@@ -23,7 +23,7 @@ public static partial class Winver
         /// <summary>
         /// Windows SKU 内部名称
         /// </summary>
-        public static string SKU => GetWindowsSKUObject().ToString();
+        public static string SKU => GetWindowsSKUGlobal().ToString();
 
         /// <summary>
         /// Windows SKU 显示名称

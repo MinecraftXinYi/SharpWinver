@@ -12,7 +12,6 @@ internal unsafe class Program
         Console.WriteLine("Test sample for SharpWinver Library on Native AOT");
         Console.WriteLine("-------------------------------");
         Console.WriteLine($"IsWindowsNT: {Winver.IsWindowsNT}");
-        Console.ReadKey();
         Console.WriteLine("-------------------------------");
         Console.WriteLine("----Current Windows OS Info----");
         Console.WriteLine("-------------------------------");

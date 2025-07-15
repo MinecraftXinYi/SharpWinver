@@ -41,8 +41,8 @@ public unsafe static class WinNTRegistryValueReader
         WDK.PInvoke.NtQueryValueKey(hKey, usz_valueName, KEY_VALUE_INFORMATION_CLASS.KeyValuePartialInformation, null, 0, out uint length);
 
         // Allocate memory for value.
-        heap = RtlHeapAPI.RtlCreateHeap(0, null, 0, 0, null, null);
-        void* buffer = RtlHeapAPI.RtlAllocateHeap(heap, WDK.PInvoke.HEAP_ZERO_MEMORY, length);
+        heap = RtlHeapApi.RtlCreateHeap(0, null, 0, 0, null, null);
+        void* buffer = RtlHeapApi.RtlAllocateHeap(heap, WDK.PInvoke.HEAP_ZERO_MEMORY, length);
 
         // Second query for value.
         KEY_VALUE_PARTIAL_INFORMATION* lp_keyValuePartialInfo = (KEY_VALUE_PARTIAL_INFORMATION*)buffer;
@@ -54,7 +54,7 @@ public unsafe static class WinNTRegistryValueReader
         // Can't query the value.
         if (status != NTSTATUS.STATUS_SUCCESS)
         {
-            RtlHeapAPI.RtlDestroyHeap(heap);
+            RtlHeapApi.RtlDestroyHeap(heap);
             heap = null;
             return null;
         }
@@ -68,7 +68,7 @@ public unsafe static class WinNTRegistryValueReader
         KEY_VALUE_PARTIAL_INFORMATION* info = ReadKeyValuePartialInfo(keyPath, valueName, out void* heap);
         if (info == null) return null;
         string value = new((char*)&info->Data);
-        RtlHeapAPI.RtlDestroyHeap(heap);
+        RtlHeapApi.RtlDestroyHeap(heap);
         return value;
     }
 
@@ -77,7 +77,7 @@ public unsafe static class WinNTRegistryValueReader
         KEY_VALUE_PARTIAL_INFORMATION* info = ReadKeyValuePartialInfo(keyPath, valueName, out void* heap);
         if (info == null) return null;
         uint value = *(uint*)&info->Data;
-        RtlHeapAPI.RtlDestroyHeap(heap);
+        RtlHeapApi.RtlDestroyHeap(heap);
         return value;
     }
 
@@ -86,7 +86,7 @@ public unsafe static class WinNTRegistryValueReader
         KEY_VALUE_PARTIAL_INFORMATION* info = ReadKeyValuePartialInfo(keyPath, valueName, out void* heap);
         if (info == null) return null;
         ulong value = *(ulong*)&info->Data;
-        RtlHeapAPI.RtlDestroyHeap(heap);
+        RtlHeapApi.RtlDestroyHeap(heap);
         return value;
     }
 }

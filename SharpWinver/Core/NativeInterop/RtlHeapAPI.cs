@@ -2,7 +2,7 @@
 
 namespace SharpWinver.Core.NativeInterop;
 
-public unsafe static class RtlHeapAPI
+public unsafe static class RtlHeapApi
 {
     [DllImport(WinDll.NTDLL, SetLastError = true)]
     [DefaultDllImportSearchPaths(DllImportSearchPath.System32)]

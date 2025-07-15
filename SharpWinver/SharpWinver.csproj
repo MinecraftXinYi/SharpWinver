@@ -6,7 +6,7 @@
     <LangVersion>10.0</LangVersion>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <Nullable>enable</Nullable>
-    <CodeVersion>3.0.0.3</CodeVersion>
+    <CodeVersion>3.0.0.4</CodeVersion>
     <ProductVersion>$(CodeVersion)</ProductVersion>
     <FileVersion>$(CodeVersion)</FileVersion>
     <AssemblyTitle>SharpWinver Library</AssemblyTitle>
@@ -23,5 +23,4 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
   </ItemGroup>
-
 </Project>
