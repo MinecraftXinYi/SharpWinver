@@ -24,6 +24,7 @@ internal unsafe class Program
         Console.WriteLine($"Windows SKU (from api): {(WinProduct.GetWindowsSKU(major, minor))}");
         Console.WriteLine($"OS Architecture (method1): {WinOSProcArch.GetNTOSArchitecture1()}");
         Console.WriteLine($"OS Architecture (method2): {WinOSProcArch.GetNTOSArchitecture2()}");
+        Console.WriteLine($"OS Version From Kernel Data: {string.Join(".", WinVersion.GetWinNTVersionNumbersFromKernelData())}");
         Console.WriteLine("-------------------------------");
         Console.WriteLine("Press any key to continue...");
         Console.ReadKey();

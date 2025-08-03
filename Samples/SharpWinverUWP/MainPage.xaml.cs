@@ -38,6 +38,7 @@ namespace SharpWinverUWP
             Debug.WriteLine($"Windows SKU (from api): {(WinProduct.GetWindowsSKU(10, 0))}");
             Debug.WriteLine($"OS Architecture (method1): {WinOSProcArch.GetNTOSArchitecture1()}");
             Debug.WriteLine($"OS Architecture (method2): {WinOSProcArch.GetNTOSArchitecture2()}");
+            Debug.WriteLine($"OS Version From Kernel Data: {string.Join(".", WinVersion.GetWinNTVersionNumbersFromKernelData())}");
         }
 
         private void OKButton_Click(object sender, RoutedEventArgs e)

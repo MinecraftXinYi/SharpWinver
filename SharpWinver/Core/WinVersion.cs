@@ -11,6 +11,13 @@ public static class WinVersion
         return new uint[] { major, minor, build };
     }
 
+    public unsafe static uint[] GetWinNTVersionNumbersFromKernelData()
+    {
+        uint major = *(uint*)NTKernelOSData.KUSER_SHARED_DATA_NtMajorVersion;
+        uint minor = *(uint*)NTKernelOSData.KUSER_SHARED_DATA_NtMinorVersion;
+        return new uint[] { major, minor };
+    }
+
     public static string? GetWindowsVersionTag()
     {
         string? version = WinNTRegistryValueReader.GetStringValue(RegistryPath.WinNTCurrentVersion, "DisplayVersion");

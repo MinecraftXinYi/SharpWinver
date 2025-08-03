@@ -1,7 +1,9 @@
 ﻿namespace SharpWinver.Core.NativeInterop;
 
-public unsafe static class NTKernelOSData
+public static class NTKernelOSData
 {
-    // Thanks to @dhrdlicka for the code
-    public static readonly long* KUSER_SHARED_DATA_SystemExpirationDate = (long*)0x7ffe02c8;
+    public const nint KUSER_SHARED_DATA = 0x7FFE0000;
+    public const nint KUSER_SHARED_DATA_NtMajorVersion = KUSER_SHARED_DATA + 0x026C;
+    public const nint KUSER_SHARED_DATA_NtMinorVersion = KUSER_SHARED_DATA + 0x0270;
+    public const nint KUSER_SHARED_DATA_SystemExpirationDate = KUSER_SHARED_DATA + 0x02C8;
 }
