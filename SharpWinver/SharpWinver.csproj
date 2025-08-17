@@ -6,7 +6,7 @@
     <LangVersion>10.0</LangVersion>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <Nullable>enable</Nullable>
-    <CodeVersion>3.1.0.2</CodeVersion>
+    <CodeVersion>3.2.0.0</CodeVersion>
     <ProductVersion>$(CodeVersion)</ProductVersion>
     <FileVersion>$(CodeVersion)</FileVersion>
     <AssemblyTitle>SharpWinver Library</AssemblyTitle>

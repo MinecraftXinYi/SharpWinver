@@ -6,7 +6,7 @@ namespace SharpWinver.Core.NativeInterop;
 
 public static class WinProductApi
 {
-    public static bool GetProductInfoM(uint dwOSMajorVersion, uint dwOSMinorVersion, uint dwSpMajorVersion, uint dwSpMinorVersion, out uint dwReturnedProductType)
+    public static bool GetProductInfo(uint dwOSMajorVersion, uint dwOSMinorVersion, uint dwSpMajorVersion, uint dwSpMinorVersion, out uint dwReturnedProductType)
     {
         try
         {

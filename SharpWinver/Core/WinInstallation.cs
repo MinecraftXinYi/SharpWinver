@@ -6,16 +6,16 @@ internal static class WinInstallation
 {
     internal static long? SystemInstallationDateTime
     {
-        get => WinNTRegistryValueReader.GetDwordValue(RegistryPath.WinNTCurrentVersion, "InstallDate");
+        get => WinNTRegistryValueReader.GetDwordValue(WinInfoRegPath.WinNTCurrentVersion, "InstallDate");
     }
 
     internal static string? SystemRegisteredOwner
     {
-        get => WinNTRegistryValueReader.GetStringValue(RegistryPath.WinNTCurrentVersion, "RegisteredOwner");
+        get => WinNTRegistryValueReader.GetStringValue(WinInfoRegPath.WinNTCurrentVersion, "RegisteredOwner");
     }
 
     internal static string? SystemRegisteredOrganization
     {
-        get => WinNTRegistryValueReader.GetStringValue(RegistryPath.WinNTCurrentVersion, "RegisteredOrganization");
+        get => WinNTRegistryValueReader.GetStringValue(WinInfoRegPath.WinNTCurrentVersion, "RegisteredOrganization");
     }
 }

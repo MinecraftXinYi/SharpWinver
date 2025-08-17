@@ -11,18 +11,18 @@ public static class WinProduct
     }
 
     public static string? GetWindowsProductNameFromRegistry()
-        => WinNTRegistryValueReader.GetStringValue(RegistryPath.WinNTCurrentVersion, "ProductName");
+        => WinNTRegistryValueReader.GetStringValue(WinInfoRegPath.WinNTCurrentVersion, "ProductName");
 
     public static WindowsSKU GetWindowsSKU(uint dwOSMajorVersion, uint dwOSMinorVersion)
     {
-        if (!WinProductApi.GetProductInfoM(dwOSMajorVersion, dwOSMinorVersion, 0, 0, out uint productType)) return WindowsSKU.Undefined;
+        if (!WinProductApi.GetProductInfo(dwOSMajorVersion, dwOSMinorVersion, 0, 0, out uint productType)) return WindowsSKU.Undefined;
         if (!WindowsSKU.TryParse(productType.ToString(), out WindowsSKU windowsSku)) return WindowsSKU.Undefined;
         return windowsSku;
     }
 
     public static WindowsSKU GetWindowsSKUFromRegistry()
     {
-        string editionID = WinNTRegistryValueReader.GetStringValue(RegistryPath.WinNTCurrentVersion, "EditionID")!;
+        string editionID = WinNTRegistryValueReader.GetStringValue(WinInfoRegPath.WinNTCurrentVersion, "EditionID")!;
         if (string.IsNullOrEmpty(editionID)) return WindowsSKU.Undefined;
         if (!WindowsSKU.TryParse(editionID, out WindowsSKU windowsSku)) return WindowsSKU.Undefined;
         return windowsSku;

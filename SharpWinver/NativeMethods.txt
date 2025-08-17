@@ -1,5 +1,5 @@
-﻿GetNativeSystemInfo
-IsWow64Process2
+﻿SYSTEM_INFO
+IMAGE_FILE_MACHINE
 
 Windows.Wdk.Storage.FileSystem.HEAP_ZERO_MEMORY
 

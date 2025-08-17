@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Runtime.InteropServices;
-using Windows.Win32;
 using Windows.Win32.Foundation;
 
 namespace SharpWinver.Core.NativeInterop;
@@ -22,21 +21,6 @@ internal static class Krnl32ProcApi
             [DefaultDllImportSearchPaths(DllImportSearchPath.System32)]
             static extern HANDLE GetCurrentProcess();
             return GetCurrentProcess();
-        }
-    }
-
-    internal static BOOL CloseHandle(HANDLE hObject)
-    {
-        try
-        {
-            [DllImport(WinDll.KernelBase, ExactSpelling = true, SetLastError = true)]
-            [DefaultDllImportSearchPaths(DllImportSearchPath.System32)]
-            static extern BOOL CloseHandle(HANDLE hObject);
-            return CloseHandle(hObject);
-        }
-        catch (Exception)
-        {
-            return PInvoke.CloseHandle(hObject);
         }
     }
 }
