@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Runtime.InteropServices;
-using Windows.Win32;
 using Windows.Win32.Foundation;
 using Windows.Win32.System.SystemInformation;
 
@@ -23,7 +22,6 @@ internal unsafe static class WinOSArchApi
             [DefaultDllImportSearchPaths(DllImportSearchPath.System32)]
             static extern void GetNativeSystemInfo(SYSTEM_INFO* lpSystemInfo);
             GetNativeSystemInfo(lpSystemInfo);
-            //PInvoke.GetNativeSystemInfo(lpSystemInfo);
         }
     }
 
@@ -42,7 +40,6 @@ internal unsafe static class WinOSArchApi
             [DefaultDllImportSearchPaths(DllImportSearchPath.System32)]
             static extern BOOL IsWow64Process2(HANDLE hProcess, IMAGE_FILE_MACHINE* pProcessMachine, IMAGE_FILE_MACHINE* pNativeMachine);
             return IsWow64Process2(hProcess, pProcessMachine, pNativeMachine);
-            //return PInvoke.IsWow64Process2(hProcess, pProcessMachine, pNativeMachine);
         }
     }
 }
