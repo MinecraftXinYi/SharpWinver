@@ -1,10 +1,10 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace SharpWinver.Core.NativeInterop;
+namespace SharpWinver.ABI;
 
 public static class RtlNTVersionApi
 {
-    [DllImport(WinDll.NTDLL)]
+    [DllImport(WinDllName.NTDLL)]
     [DefaultDllImportSearchPaths(DllImportSearchPath.System32)]
     public static extern void RtlGetNtVersionNumbers(out uint major, out uint minor, out uint buildraw);
 

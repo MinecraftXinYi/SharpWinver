@@ -1,4 +1,4 @@
-namespace SharpWinver.Core;
+namespace SharpWinver;
 
 /// <summary>
 /// Enumeration of Windows SKUs.

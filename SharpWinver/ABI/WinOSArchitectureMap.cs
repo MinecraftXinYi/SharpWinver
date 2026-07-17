@@ -1,7 +1,7 @@
 ﻿using System.Runtime.InteropServices;
 using Windows.Win32.System.SystemInformation;
 
-namespace SharpWinver.Core.NativeInterop;
+namespace SharpWinver.ABI;
 
 internal static class WinOSArchitectureMap
 {

@@ -2,22 +2,22 @@
 using System.Runtime.InteropServices;
 using Windows.Win32.Foundation;
 
-namespace SharpWinver.Core.NativeInterop;
+namespace SharpWinver.ABI;
 
-internal static class Krnl32ProcApi
+internal static class ProcessThreadsApi
 {
     internal static HANDLE GetCurrentProcess()
     {
         try
         {
-            [DllImport(WinDll.KernelBase, ExactSpelling = true)]
+            [DllImport(WinDllName.KernelBase, ExactSpelling = true)]
             [DefaultDllImportSearchPaths(DllImportSearchPath.System32)]
             static extern HANDLE GetCurrentProcess();
             return GetCurrentProcess();
         }
         catch (Exception)
         {
-            [DllImport(WinDll.Kernel32, ExactSpelling = true)]
+            [DllImport(WinDllName.Kernel32, ExactSpelling = true)]
             [DefaultDllImportSearchPaths(DllImportSearchPath.System32)]
             static extern HANDLE GetCurrentProcess();
             return GetCurrentProcess();

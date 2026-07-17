@@ -1,6 +1,6 @@
-﻿namespace SharpWinver.Core.NativeInterop;
+﻿namespace SharpWinver.ABI;
 
-internal static class WinDll
+internal static class WinDllName
 {
     internal const string
         NTDLL = "ntdll.dll",

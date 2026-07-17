@@ -1,6 +1,6 @@
-﻿namespace SharpWinver.Core.NativeInterop;
+﻿namespace SharpWinver.ABI;
 
-public static class NTKernelOSData
+public static class NTKernelDataAddress
 {
     public const nint
         KUSER_SHARED_DATA = 0x7FFE0000,

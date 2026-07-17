@@ -1,0 +1,6 @@
+﻿namespace SharpWinver.ABI;
+
+public static class WinInfoRegPath
+{
+    public const string WinNTCurrentVersion = @"\Registry\Machine\SOFTWARE\Microsoft\Windows NT\CurrentVersion";
+}

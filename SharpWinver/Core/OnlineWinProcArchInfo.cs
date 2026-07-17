@@ -1,13 +1,23 @@
-﻿using System.Runtime.InteropServices;
+﻿using SharpWinver.ABI;
+using System.Runtime.InteropServices;
 using Windows.Win32.Foundation;
 using Windows.Win32.System.SystemInformation;
 
 namespace SharpWinver.Core;
 
-using NativeInterop;
-
-public unsafe static class WinOSProcArch
+public unsafe static class OnlineWinProcArchInfo
 {
+    public static Architecture NTOSArchitecture
+    {
+        get
+        {
+            Architecture? architecture = GetNTOSArchitecture2();
+            architecture ??= GetNTOSArchitecture1();
+            architecture ??= RuntimeInformation.OSArchitecture;
+            return architecture.Value;
+        }
+    }
+
     public static Architecture? GetNTOSArchitecture1()
     {
         SYSTEM_INFO systemInfo;
@@ -17,7 +27,7 @@ public unsafe static class WinOSProcArch
 
     public static Architecture? GetNTOSArchitecture2()
     {
-        HANDLE hProcess = Krnl32ProcApi.GetCurrentProcess();
+        HANDLE hProcess = ProcessThreadsApi.GetCurrentProcess();
         IMAGE_FILE_MACHINE processMachine, nativeMachine;
         WinOSArchApi.IsWow64Process2(hProcess, &processMachine, &nativeMachine);
         return WinOSArchitectureMap.ArchitectureMap2(nativeMachine);

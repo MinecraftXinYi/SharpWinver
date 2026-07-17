@@ -1,15 +1,42 @@
-﻿using WDK = Windows.Wdk;
-using Win32 = Windows.Win32;
-
+﻿using SharpWinver.ABI;
 using Windows.Wdk.Foundation;
 using Windows.Wdk.System.Registry;
 using Windows.Wdk.System.SystemServices;
 using Windows.Win32.Foundation;
+using WDK = Windows.Wdk;
+using Win32 = Windows.Win32;
 
-namespace SharpWinver.Core.NativeInterop;
+namespace SharpWinver.Core.Helpers;
 
-public unsafe static class WinNTRegistryValueReader
+public unsafe static class NTRegistryValueReader
 {
+    public static string? GetStringValue(string keyPath, string valueName)
+    {
+        KEY_VALUE_PARTIAL_INFORMATION* info = ReadKeyValuePartialInfo(keyPath, valueName, out void* heap);
+        if (info == null) return null;
+        string value = new((char*)&info->Data);
+        RtlHeapApi.RtlDestroyHeap(heap);
+        return value;
+    }
+
+    public static uint? GetDwordValue(string keyPath, string valueName)
+    {
+        KEY_VALUE_PARTIAL_INFORMATION* info = ReadKeyValuePartialInfo(keyPath, valueName, out void* heap);
+        if (info == null) return null;
+        uint value = *(uint*)&info->Data;
+        RtlHeapApi.RtlDestroyHeap(heap);
+        return value;
+    }
+
+    public static ulong? GetQwordValue(string keyPath, string valueName)
+    {
+        KEY_VALUE_PARTIAL_INFORMATION* info = ReadKeyValuePartialInfo(keyPath, valueName, out void* heap);
+        if (info == null) return null;
+        ulong value = *(ulong*)&info->Data;
+        RtlHeapApi.RtlDestroyHeap(heap);
+        return value;
+    }
+
     internal static KEY_VALUE_PARTIAL_INFORMATION* ReadKeyValuePartialInfo(string keyPath, string valueName, out void* heap)
     {
         // Init the key name and open registry.
@@ -19,7 +46,7 @@ public unsafe static class WinNTRegistryValueReader
         {
             Length = (uint)sizeof(OBJECT_ATTRIBUTES),
             ObjectName = &usz_keyPath,
-            Attributes = Win32.PInvoke.OBJ_CASE_INSENSITIVE,
+            Attributes = OBJECT_ATTRIBUTE_FLAGS.OBJ_CASE_INSENSITIVE,
             SecurityDescriptor = null,
             SecurityQualityOfService = null,
             RootDirectory = HANDLE.Null
@@ -61,32 +88,5 @@ public unsafe static class WinNTRegistryValueReader
 
         // Return the value.
         return lp_keyValuePartialInfo;
-    }
-
-    public static string? GetStringValue(string keyPath, string valueName)
-    {
-        KEY_VALUE_PARTIAL_INFORMATION* info = ReadKeyValuePartialInfo(keyPath, valueName, out void* heap);
-        if (info == null) return null;
-        string value = new((char*)&info->Data);
-        RtlHeapApi.RtlDestroyHeap(heap);
-        return value;
-    }
-
-    public static uint? GetDwordValue(string keyPath, string valueName)
-    {
-        KEY_VALUE_PARTIAL_INFORMATION* info = ReadKeyValuePartialInfo(keyPath, valueName, out void* heap);
-        if (info == null) return null;
-        uint value = *(uint*)&info->Data;
-        RtlHeapApi.RtlDestroyHeap(heap);
-        return value;
-    }
-
-    public static ulong? GetQwordValue(string keyPath, string valueName)
-    {
-        KEY_VALUE_PARTIAL_INFORMATION* info = ReadKeyValuePartialInfo(keyPath, valueName, out void* heap);
-        if (info == null) return null;
-        ulong value = *(ulong*)&info->Data;
-        RtlHeapApi.RtlDestroyHeap(heap);
-        return value;
     }
 }

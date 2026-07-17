@@ -2,7 +2,7 @@
 using System.Runtime.InteropServices;
 using Windows.Win32.Foundation;
 
-namespace SharpWinver.Core.NativeInterop;
+namespace SharpWinver.ABI;
 
 public static class WinProductApi
 {
@@ -10,7 +10,7 @@ public static class WinProductApi
     {
         try
         {
-            [DllImport(WinDll.KernelBase, SetLastError = true)]
+            [DllImport(WinDllName.KernelBase, SetLastError = true)]
             [DefaultDllImportSearchPaths(DllImportSearchPath.System32)]
             static extern BOOL GetProductInfo(uint dwOSMajorVersion, uint dwOSMinorVersion, uint dwSpMajorVersion, uint dwSpMinorVersion, out uint dwReturnedProductType);
             BOOL result = GetProductInfo(dwOSMajorVersion, dwOSMinorVersion, dwSpMajorVersion, dwSpMinorVersion, out dwReturnedProductType);
@@ -18,7 +18,7 @@ public static class WinProductApi
         }
         catch (Exception)
         {
-            [DllImport(WinDll.Kernel32, SetLastError = true)]
+            [DllImport(WinDllName.Kernel32, SetLastError = true)]
             [DefaultDllImportSearchPaths(DllImportSearchPath.System32)]
             static extern BOOL GetProductInfo(uint dwOSMajorVersion, uint dwOSMinorVersion, uint dwSpMajorVersion, uint dwSpMinorVersion, out uint dwReturnedProductType);
             BOOL result = GetProductInfo(dwOSMajorVersion, dwOSMinorVersion, dwSpMajorVersion, dwSpMinorVersion, out dwReturnedProductType);
