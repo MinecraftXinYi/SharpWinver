@@ -12,13 +12,12 @@
 		<Company>MinecraftXinYi Person</Company>
 	</PropertyGroup>
 	<PropertyGroup>
-		<Title>SharpWinver</Title>
 		<Authors>MinecraftXinYi</Authors>
 		<Description>A .NET Standard library that provides information of Windows OS via CSharp methods.</Description>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 	</PropertyGroup>
 	<PropertyGroup>
-		<Version>4.0.0.1</Version>
+		<Version>4.0.0.2</Version>
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Windows.CsWin32" Version="0.3.275">
