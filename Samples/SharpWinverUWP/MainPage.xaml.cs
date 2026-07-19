@@ -24,18 +24,20 @@ namespace SharpWinverUWP
 {
     public sealed partial class MainPage : Page
     {
+        private IWinVer WinVer = new OnlineWinVer();
+
         public MainPage()
         {
             if (ApiInformation.IsTypePresent("Windows.UI.Xaml.Media.AcrylicBrush"))
                 Background = new AcrylicBrush() { BackgroundSource = AcrylicBackgroundSource.HostBackdrop };
             this.InitializeComponent();
-            WinEditionContent.Text = OnlineWinVer.WindowsEdition.OSEdition;
-            ReleaseVersionContent.Text = OnlineWinVer.WindowsVersion.VersionTag;
-            OSVersionContent.Text = string.Join(".", OnlineWinVer.WindowsVersion.OSVersion);
-            OSArchContent.Text = OnlineWinVer.WindowsEdition.OSArchitecture.ToString();
+            WinEditionContent.Text = WinVer.Edition;
+            ReleaseVersionContent.Text = WinVer.VersionTag;
+            OSVersionContent.Text = string.Join(".", WinVer.OSVersion);
+            OSArchContent.Text = WinVer.OSArchitecture.ToString();
             Debug.WriteLine($"IsWindowsNT: {OnlineWinVer.IsWindowsNT}");
-            Debug.WriteLine($"Windows SKU (from registry): {(OnlineWinProductInfo.GetWindowsSKUFromRegistry())}");
-            Debug.WriteLine($"Windows SKU (from api): {(OnlineWinProductInfo.GetWindowsSKU(10, 0))}");
+            Debug.WriteLine($"Windows SKU (from registry): {(OnlineWinProductInfo.GetWindowsSKUNameFromRegistry())}");
+            Debug.WriteLine($"Windows SKU (from api): {(OnlineWinProductInfo.GetWindowsSKUIdFromApi(10, 0))}");
             Debug.WriteLine($"OS Architecture (method1): {OnlineWinProcArchInfo.GetNTOSArchitecture1()}");
             Debug.WriteLine($"OS Architecture (method2): {OnlineWinProcArchInfo.GetNTOSArchitecture2()}");
             Debug.WriteLine($"OS Version From Kernel Data: {string.Join(".", OnlineWinVersionInfo.GetWinNTVersionNumbersFromKernelData())}");
