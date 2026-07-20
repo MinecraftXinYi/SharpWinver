@@ -14,7 +14,7 @@
 		<Company>MinecraftXinYi Person</Company>
 	</PropertyGroup>
 	<PropertyGroup>
-		<VersionPrefix>4.0.1</VersionPrefix>
+		<VersionPrefix>4.0.2</VersionPrefix>
 		<VersionSuffix></VersionSuffix>
 	</PropertyGroup>
 	<ItemGroup>

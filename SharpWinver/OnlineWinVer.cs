@@ -8,7 +8,7 @@ namespace SharpWinver;
 /// <summary>
 /// 获取联机 Windows 系统副本的版本信息
 /// </summary>
-public class OnlineWinVer : IWinVer
+public sealed class OnlineWinVer : IWinVer
 {
     /// <summary>
     /// 检测当前运行的操作系统是否基于 Windows NT 内核
